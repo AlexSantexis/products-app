@@ -18,10 +18,12 @@ mongoose.connect(process.env.MONGODB_URI).then(
 );
 
 const user = require("./route/user.route");
+const product = require("./route/product.route");
 const userProduct = require("./route/user.product.routes");
 
 app.use("/api/users", user);
 app.use("/api/user-products", userProduct);
+app.use("/api/products", product);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument.options));
 
 app.listen(port, () => {
