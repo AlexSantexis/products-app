@@ -1,13 +1,17 @@
 const User = require("../models/user.model");
+const logger = require("../logger/logger");
 
 exports.findAll = async (req, res) => {
   console.log("Find all users");
 
   try {
     const result = await User.find();
-    res.status(200).json({ data: result });
+    res.status(200).json({ status: true, data: result });
+    logger.debug("Success in reading all users");
+    logger.info("Success in reading all users");
   } catch (err) {
     console.log(`Problem in reading users, ${err}`);
+    logger.error("Problem in retrieving all users");
   }
 };
 
