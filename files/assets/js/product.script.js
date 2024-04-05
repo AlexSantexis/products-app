@@ -130,10 +130,6 @@ function deleteProduct(productName) {
     });
 }
 
-function editProduct(product){
-  productId = 
-}
-
 function alert(status, message) {
   if (status) {
     $(".alert").addClass("alert-success");
