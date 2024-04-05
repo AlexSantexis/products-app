@@ -1,10 +1,13 @@
 const Product = require("../models/product.model");
+const logger = require("../logger/logger");
 
 exports.findAll = async (req, res) => {
   console.log("Find all products");
   try {
     const result = await Product.find();
-    res.status(200).json({ data: result });
+    res.status(200).json({ status: true, data: result });
+    logger.debug("Success in reading all products");
+    logger.info("Succed in reading all products");
   } catch (err) {
     console.log("Error retrieving products");
   }
@@ -24,13 +27,13 @@ exports.findOne = async (req, res) => {
 
 exports.create = async (req, res) => {
   console.log("Insert a product");
-  console.log(req.body);
   const newProduct = new Product({
     product: req.body.product,
     cost: req.body.cost,
     description: req.body.description,
     quantity: req.body.quantity,
   });
+  console.log(newProduct);
   try {
     const result = await newProduct.save();
     res.status(200).json({ data: result });
